@@ -1,0 +1,35 @@
+{% include "base.html" %}
+
+{% block header %}{% endblock header %}
+<link rel="stylesheet" href="/static/css/profile.css">
+
+
+{% block content %}
+{% if request.user.is_authenticated %}
+    <div class="col-sm-4  text-left" >
+    <p>Your Profile</p>
+    <table class="table">
+        <tr class="table-active">
+            <td>User Name</td>
+            <td>{{ user }}</td>
+        </tr>
+        <tr>
+            <td>First Name</td>
+            <td>{{ user.first_name }}</td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td>{{ user.last_name }}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>{{ user.email }}</td>
+        </tr>
+
+    </table>
+    <button onclick="edit()" class="btn btn-primary">edit profile</button>
+    </div>
+
+    <script src="/static/js/profile.js"></script>
+{% endif %}
+{% endblock content %}

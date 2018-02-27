@@ -1,0 +1,30 @@
+{% include "base.html" %}
+
+{% block header %}{% endblock header %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+      <h2>Edit</h2>
+      <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+          <p>
+            {% if field.auto_id != 'id_password' %}
+                {{ field.label_tag }}<br>
+                {{ field }}
+            {% endif %}
+            {% for error in field.errors %}
+              <p style="color: red">{{ error }}</p>
+            {% endfor %}
+          </p>
+        {% endfor %}
+
+        <a href="../password/">Click Me To Change Password</a><br><br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    {% else %}
+                <h1>You are already logged out!!</h1>
+        <h1> Go to <a href="/bookcity/home"> Home Page</a></h1>
+
+    {% endif %}
+{% endblock %}

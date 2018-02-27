@@ -1,0 +1,64 @@
+{% include "base.html" %}
+
+{% block header %}{% endblock header %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-sm-3  text-left" >
+            <img src="/{{ author.pic }}" alt="My image" style="width:150px; height:200px;"/>
+            <h4>{{author.name}}</h4>
+            {% if request.user.is_authenticated %}
+                {% if followFlag %}
+                    <button onclick="unFollowMe()" class="btn btn-primary">Unfollow</button>
+                {% else %}
+                    <button onclick="followMe() " class="btn btn-primary">Follow</button>
+                {%endif%}
+            {%endif%}
+
+             <hr class="my-4">
+        </div>
+        <div class="col-sm-3">
+            <table class="table table-hover">
+                <tbody>
+                <tr class="table-active">
+                    <th>Country</th>
+                    <td>{{author.country}}</td>
+                </tr>
+                <tr>
+                <th>DOB</th>
+                <td>{{author.DOB}}</td>
+                </tr>
+                {% if author.DOD %}
+                    <tr>
+                        <th>DOD</th>
+                        <td>{{author.DOD}}</td>
+                    </tr>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-3">
+            <h3>Books</h3>
+            {% if books %}
+                <ul>
+                    {% for book in books %}
+                        <li><a href="/bookcity/books/{{ book.bid }}/">{{ book.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No books are available.</p>
+            {% endif %}
+        </div>
+
+        <div class=" col-sm-10 text-left">
+            <h2 class="display-3">Biography:</h2>
+            <p class="lead">{{author.bio}}</p>
+            <hr class="my-4">
+
+        </div>
+    </div>
+
+    <script src="/static/js/authorDetail.js"></script>
+
+{% endblock content %}

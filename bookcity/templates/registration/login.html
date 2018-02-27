@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <h1>You are already logged in!!</h1>
+        <h1> Go to <a href="/bookcity/home"> Home Page</a></h1>
+    {%else%}
+        <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    {% endif %}
+{% endblock %}

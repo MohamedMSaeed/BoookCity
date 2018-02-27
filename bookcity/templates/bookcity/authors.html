@@ -1,0 +1,25 @@
+{% include "base.html" %}
+
+{% block header %}{% endblock header %}
+<link rel="stylesheet" href="/static/css/books.css">
+
+{% block content %}
+    {% if author_list %}
+        <div class="row">
+            {% for author in author_list %}
+                <div class="col-sm-2">
+                    <div class="panel panel-danger ">
+                        <div class="panel-heading"><a href="/bookcity/authors/{{ author.aid }}/">{{ author.name }}</a></div>
+                        <div class="panel-body"><img src="/{{ author.pic }}" class="img-responsive" style="width:100%; height: 150px " alt="Image"></div>
+                        <div class="panel-footer">{{ author.bio | truncatechars:15}}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No authors are available.</p>
+    {% endif %}
+
+{% endblock content %}
+
+

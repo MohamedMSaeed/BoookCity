@@ -1,0 +1,106 @@
+body {
+	margin: 0;
+	padding: 0;
+	line-height: 1.5em;
+	font-family: Verdana, Arial, san-serif;
+	font-size: 15px;
+	color: #ffffff;
+	background: #4b4743;
+}
+
+a:link, a:visited { color: #e6e154; text-decoration: none; font-weight: bold;}
+a:active, a:hover { color: #e6e154; text-decoration: underline;}
+
+
+.dropbtn{
+    background-color: #272424;
+    color: grey;
+    padding: 16px;
+    font-size: 15px;
+    border: none;
+}
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content{
+    padding-left:0;
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 220px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+            .dropdown-content a{
+                color: black;
+                padding: 12px 6px;
+                text-decoration: none;
+                display: block;
+            }
+            .dropdown-content a:hover{background-color: #ddd}
+
+        /* Show the dropdown menu on hover */
+            .dropdown:hover .dropdown-content{
+            display: block;
+            }
+
+        /* Change the background color of the dropdown button when the dropdown content is shown */
+            .dropdown:hover .dropbtn{
+                background-color: #272424;
+            }
+
+        /* Rate style */
+            .rating {
+                float:left;
+                width:300px;
+            }
+            .rating span { float:right; position:relative; }
+            .rating span input {
+                position:absolute;
+                top:0px;
+                left:0px;
+                opacity:0;
+            }
+            .rating span label {
+                display:inline-block;
+                width:30px;
+                height:30px;
+                text-align:center;
+                color:#FFF;
+                background:#ccc;
+                font-size:30px;
+                margin-right:2px;
+                line-height:30px;
+                border-radius:50%;
+                -webkit-border-radius:50%;
+            }
+            .rating span:hover ~ span label,
+            .rating span:hover label,
+            .rating span.checked label,
+            .rating span.checked ~ span label {
+                background:#F90;
+                color:#FFF;
+            }
+
+        /* Edit Side Bar */
+            .sideBar{
+                height: 100vh;
+                width: 160px;
+                z-index: 1;
+                left: 0;
+                overflow: hidden;
+                float: left;
+                padding-right: 20px;
+            }
+            a{
+                text-decoration: none !important;
+            }
+
+input{
+    color: #272424 !important;
+}

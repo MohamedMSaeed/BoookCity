@@ -1,0 +1,26 @@
+{% include "base.html" %}
+
+{% block header %}{% endblock header %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h1>You are already logged in!!</h1>
+        <h1> Go to <a href="/bookcity/home"> Home Page</a></h1>
+    {%else%}
+        <h2>Sign up</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <p>
+                    {{ field.label_tag }}<br>
+                    {{ field }}
+
+                    {% for error in field.errors %}
+                    <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+                </p>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Sign up</button>
+        </form>
+    {% endif %}
+{% endblock %}

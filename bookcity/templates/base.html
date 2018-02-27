@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>BookCity</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/css/base.css">
+    </head>
+
+    <body>
+        {% block header %}
+
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/bookcity/home">Book City</a>
+                </div>
+            <ul class="nav navbar-nav">
+                {% if user.is_authenticated %}
+                    <li class="active"><a href="/bookcity/home/">Home</a></li>
+                {% endif %}
+                <li><a href="/bookcity/books/">Books</a></li>
+                <li><a href="/bookcity/authors/">Authors</a></li>
+                <!-- drop down for categories -->
+                <li class="dropdown">
+                    <button class="dropbtn">Categories</button>
+                    <ul class="dropdown-content">
+                        {% for category in all_category_list %}
+                            <a href="/bookcity/categories/{{ category.cid }}/">{{ category.name }}</a>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <!-- end of drop down -->
+            </ul>
+            <div class="navbar-form navbar-left">
+                <div class="input-group ">
+                    <input type="text" class="form-control" placeholder="Search" id="searchbox">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" onclick="search()">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                    <li><a href="/bookcity/profile/"><span class="glyphicon glyphicon-user"></span> Hi {{ user.username }}!</a></li>
+                    <li><a href="/bookcity/logout/"><span class="glyphicon glyphicon-log-in"></span> logout</a></li>
+                {% else %}
+                    <li><a href="/bookcity/login/"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li><a href="/bookcity/signup/"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                {% endif %}
+            </ul>
+            </div>
+        </nav>
+        {% endblock header %}
+
+        {% block sideBar %}
+            {% if user.is_authenticated %}
+                <nav class="sideBar">
+                    <ul class="nav ">
+{#                        <li><a href="/bookcity/home/">Home</a></li>#}
+                        <li><a href="/bookcity/books/">Books</a></li>
+                        <li><a href="/bookcity/authors/">Authors</a></li>
+                    </ul>
+                </nav>
+            {% else %}
+                <nav class="sideBar">
+
+                </nav>
+            {% endif %}
+        {% endblock sideBar %}
+
+        {% block content %}
+
+        {% endblock content %}
+
+        <script type="text/javascript" src="/static/js/base.js"></script>
+
+    </body>
+</html>

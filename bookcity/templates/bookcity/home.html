@@ -1,0 +1,165 @@
+{% include "base.html" %}
+
+
+{% block header %}{% endblock header %}
+    <link rel="stylesheet" href="/static/css/home.css">
+{% block content %}
+    <div class="row">
+        <div class="col-sm-4  text-left" >
+            <h2>Top Rated Books</h2>
+            <table class="table table-hover">
+                <tbody>
+                <tr class="table-active">
+                    <th>Book Name</th>
+                    <th>Avg Rate</th>
+                    <th>No. of users</th>
+                </tr>
+                    {% if topRateBooks %}
+                        {% for book in topRateBooks %}
+                            <tr>
+                                <td><a href="/bookcity/books/{{ book.bid }}/">{{ book.bid__name }}</a></td>
+                                <td>{{ book.rateIt }}</td>
+                                <td>{{ book.count }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <td>No top rated yet! </td>
+                    {% endif %}
+                </tbody>
+            </table>
+
+            <br>
+            <h2> Top Followed Authors </h2>
+            <table class="table table-hover">
+                <tbody>
+                <tr class="table-active">
+                    <th>Author Name</th>
+                    <th>Followed By</th>
+                </tr>
+                {% if topFollowedAuthors %}
+                    {% for author in topFollowedAuthors %}
+                        <tr>
+                        <td><a href="/bookcity/authors/{{ author.aid }}/">{{ author.name }}</a></td>
+                        <td>{{ author.count }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <td>No Followed Authors yet! </td>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+        {% if user.is_authenticated %}
+            <div class="col-sm-4" style="float:right;" >
+                <h2> Liked Categories  </h2>
+                {% if likeCategories %}
+                    <ul>
+                    {% for category in likeCategories %}
+                        <li><a href="/bookcity/categories/{{ category.cid }}/">{{ category.name }}</a></li>
+                        Books: <br>
+                        {% for bookqq in likeCategoriesBooks %}
+                            {% if bookqq.cid == category.cid %}
+                                {% for bok in allBooks %}
+                                    {% if bookqq.bookCategory == bok.bid %}
+                                        <a href="/bookcity/books/{{ bok.bid }}/">{{ bok.name }}</a><br>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                        <!--<hr class="my-2">-->
+                        <br>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>You don't like any Categories.</p>
+                {% endif %}
+
+                <h2> Wish List </h2>
+                {% if wishListBooks %}
+                    <ul>
+                    {% for book in wishListBooks %}
+                        <li><a href="/bookcity/books/{{ book.bid }}/">{{ book.name }}</a></li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>You don't have books in wish list.</p>
+                {% endif %}
+
+                <h2> Followed Authors </h2>
+                {% if followedAuthors %}
+                    <ul>
+                    {% for author in followedAuthors %}
+                        <li><a href="/bookcity/authors/{{ author.aid }}/">{{ author.name }}</a></li>
+                        books: <br>
+                        {% for book in followedAuthorsBooks %}
+                            {% if book.author.aid == author.aid %}
+                                    <a href="/bookcity/books/{{ book.bid }}/">{{ book.name }}</a><br>
+                            {% endif %}
+                        {% endfor %}
+                        <br>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>You don't follow any author.</p>
+                {% endif %}
+            </div>
+        {% else %}
+            <div class="col-sm-4" style="float:right;" >
+                <div class="row"> <div class="col-xs-8 col-sm-6 col-md-6">
+                    <h2>Books</h2>
+                    <div id="myCarousel" class="vertical-slider carousel vertical slide col-md-12" data-ride="carousel">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span data-slide="next" class="btn-vertical-slider glyphicon glyphicon-circle-arrow-up " style="font-size: 30px"></span>
+                            </div>
+                            <div class="col-md-8">
+                            </div>
+                        </div>
+                        <br />
+                        <!-- Carousel items -->
+
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-5 col-md-5">
+                                        <img src="/static/images/welcom.gif" class="thumbnail" alt="Image" style="width:150px; height: 150px"/>
+                                    </div>
+                                </div>
+                                <!--/row-fluid-->
+                            </div>
+                            {%for book in allBooks%}
+                                <div class="item ">
+                                    <div class="row">
+                                        <div class="col-xs-6 col-sm-5 col-md-5">
+                                            <a href="/bookcity/books/{{ book.bid }}/"> <img src="/{{ book.image }}" class=""
+                                                alt="Image" style="width:150px; height: 150px"/>{{book.name}}</a>
+                                        </div>
+                                        <div class="col-sm-8">
+                                          {{ book.desc | truncatechars:20}}
+                                        </div>
+                                    </div>
+
+                                    <!--/row-fluid-->
+                                </div>
+                            {%endfor%}
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span data-slide="prev" class="btn-vertical-slider glyphicon glyphicon-circle-arrow-down"
+                                    style="color: Black; font-size: 30px"></span>
+                            </div>
+                            <div class="col-md-8">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/static/js/home.js"></script>
+
+{% endblock content %}

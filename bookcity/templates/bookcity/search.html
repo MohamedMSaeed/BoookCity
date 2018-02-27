@@ -1,0 +1,34 @@
+{% include "base.html" %}
+
+{% block header %}{% endblock header %}
+<link rel="stylesheet" href="/static/css/search.css">
+
+{% block content %}
+
+    {% if author %}
+        <p>Authors: </p>
+        {% for author in author %}
+            <a href="/bookcity/authors/{{author.aid}}">{{ author.name }}</a><br>
+        {% endfor %}
+    {% endif %}
+
+    {% if book %}
+        <br>
+        <p>Book: </p>
+        {% for book in book %}
+            <a href="/bookcity/books/{{book.bid}}">{{ book.name }}</a><br>
+        {% endfor %}
+    {% endif %}
+
+    {% if category %}
+        <br>
+        <p>Category: </p>
+        {% for category in category %}
+            <a href="/bookcity/categories/{{category.cid}}">{{ category.name }}</a><br>
+        {% endfor %}
+    {% endif %}
+
+
+{% endblock content %}
+
+
