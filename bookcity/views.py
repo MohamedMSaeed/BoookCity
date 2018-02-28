@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from bookcity.forms import RegistrationForm, Edit, changePassword
 from django.db.models import Avg, Count
+from django.views.decorators.cache import never_cache
 
 
 
@@ -178,7 +179,7 @@ def unfollowCate(request, category_id):
     category.save()
     return redirect('/bookcity/categories/' + str(category_id))
 
-
+@never_cache
 def profile(request):
     all_category_list = Category.objects.all()
     if request.user.is_authenticated :
@@ -197,7 +198,7 @@ class signup(generic.CreateView):
     success_url = reverse_lazy('login')
 
 
-
+@never_cache
 def edit(request):
     all_category_list = Category.objects.all()
     if request.user.is_authenticated :
@@ -217,7 +218,7 @@ def edit(request):
     else:
         return redirect('/bookcity/')
 
-
+@never_cache
 def changePassword(request):
     all_category_list = Category.objects.all()
     if request.user.is_authenticated :
