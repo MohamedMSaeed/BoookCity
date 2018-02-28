@@ -4,12 +4,12 @@ body {
 	line-height: 1.5em;
 	font-family: Verdana, Arial, san-serif;
 	font-size: 15px;
-	color: #ffffff;
-	background: #4b4743;
+	color: #000;
+	background: #cad2ff;
 }
 
-a:link, a:visited { color: #e6e154; text-decoration: none; font-weight: bold;}
-a:active, a:hover { color: #e6e154; text-decoration: underline;}
+a:link, a:visited { color: #292259; text-decoration: none; font-weight: bold; font-size:16px;}
+a:active, a:hover { color: #fff; text-decoration: underline;}
 
 
 .dropbtn{

@@ -3,6 +3,9 @@
 {% block header %}{% endblock header %}
 
 {% block content %}
+request {{ request.user }} :  {{ request.user.is_authenticated }} <br>
+user {{ user }} :  {{ user.is_authenticated }}
+
     {% if request.user.is_authenticated %}
       <h2>Edit</h2>
       <form method="post">

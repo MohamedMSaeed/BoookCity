@@ -8,9 +8,9 @@
             {% for book in book_list %}
                 <div class="col-sm-2">
                      <div class="panel panel-danger ">
-                         <div class="panel-heading"><a href="/bookcity/books/{{ book.bid }}/">{{ book.name}}</a></div>
+                         <div class="panel-heading"><a href="/bookcity/books/{{ book.bid }}/" style="color:#cfb8a2 !important;">{{ book.name}}</a></div>
                          <div class="panel-body"><img src="/{{ book.image }}" class="img-responsive" style="width:100%; height: 150px" alt="Image"></div>
-                         <div class="panel-footer"><a href="/bookcity/authors/{{ book.author.aid }}/">By: {{ book.author.name | truncatechars:15 }}</a></div>
+                         <div class="panel-footer"><a href="/bookcity/authors/{{ book.author.aid }}/" style="color:#cfb8a2 !important;">By: {{ book.author.name | truncatechars:15 }}</a></div>
                      </div>
                 </div>
             {% endfor %}

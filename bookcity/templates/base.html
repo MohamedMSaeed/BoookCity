@@ -10,19 +10,19 @@
         {% block header %}
 
         <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
+            <div class="container-fluid" style="background-color:#1f3541;">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/bookcity/home">Book City</a>
+                    <a class="navbar-brand" href="/bookcity/home" style="color:#fff;">Book City</a>
                 </div>
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav" >
                 {% if user.is_authenticated %}
-                    <li class="active"><a href="/bookcity/home/">Home</a></li>
+                    <li class=""><a href="/bookcity/home/" style="color:#fff;">Home</a></li>
                 {% endif %}
-                <li><a href="/bookcity/books/">Books</a></li>
-                <li><a href="/bookcity/authors/">Authors</a></li>
+                <li><a href="/bookcity/books/" style="color:#fff;">Books</a></li>
+                <li><a href="/bookcity/authors/" style="color:#fff;">Authors</a></li>
                 <!-- drop down for categories -->
                 <li class="dropdown">
-                    <button class="dropbtn">Categories</button>
+                    <button class="dropbtn" style="color:#fff;">Categories</button>
                     <ul class="dropdown-content">
                         {% for category in all_category_list %}
                             <a href="/bookcity/categories/{{ category.cid }}/">{{ category.name }}</a>

@@ -1,11 +1,11 @@
 .panel-heading{
-background-color:#333 !important;
+background-color:#3e525d !important;
+color:#cfb8a2 !important;
 }
 .panel-footer{
-background-color:#333 !important;
-
-
+background-color:#3e525d !important;
 }
+
 .panel {
     border: 0 !important;
 }
